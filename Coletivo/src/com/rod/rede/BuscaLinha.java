@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.rod.coletivo.auxiliar.Retorno;
+import com.rod.util.ParametrosGlobais;
 
 public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 	public String METHOD_NAME = "BuscaLinha";
@@ -21,12 +22,14 @@ public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 	
 	Context context;
 	Retorno  ret;
+	String origem;
 	
 	ProgressDialog pd;
 	
-	public BuscaLinha(Context context, Retorno ret){
+	public BuscaLinha(Context context, Retorno ret, String origem){
 		this.context = context;
 		this.ret = ret;
+		this.origem = origem;
 		
 	}
 	@Override
@@ -49,7 +52,11 @@ public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 			
 			result = (SoapObject) envelope.getResponse();
 
-		} catch (Exception e) {
+		} 
+		catch (NullPointerException e){
+			
+		}
+		catch (Exception e) {
 			Log.d("mytag", e.getMessage());
 			e.printStackTrace();
 		}
@@ -58,14 +65,17 @@ public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 
 	@Override
 	protected void onPreExecute() {
-		pd = new ProgressDialog(context);
-		pd.setMessage("Carregando linhas...");
-		pd.show();
+		if(origem == ParametrosGlobais.ORIGEM_ACTIVITY){
+			pd = new ProgressDialog(context);
+			pd.setMessage("Carregando linhas...");
+			pd.show();
+		}
 	}
 	
 	@Override
 	protected void onPostExecute(SoapObject result) {
 		ret.Trata(result);
-		pd.dismiss();
+		if(origem == ParametrosGlobais.ORIGEM_ACTIVITY)
+			pd.dismiss();
 	}
 }

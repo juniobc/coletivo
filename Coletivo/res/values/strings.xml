@@ -7,5 +7,7 @@
     <string name="buscar_linhas">Buscar Linhas</string>
     <string name="title_activity_possivel_rota">Possivel Linha</string>
     <string name="title_activity_map">MapActivity</string>
-
+    <string name="action_map">Mapa</string>
+	<string name="action_db">Banco</string>
+    
 </resources>

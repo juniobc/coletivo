@@ -1,6 +1,5 @@
 package com.rod.util;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,34 +7,42 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.EditText;
 
-import com.example.coletivo.R;
-import com.rod.coletivo.MainActivity;
-import com.rod.coletivo.MapActivity;
+import com.rod.coletivo.auxiliar.Retorno;
 
 public class GPSListener implements android.location.LocationListener {
-	Activity activity;
+	Context activity;
 	LocationManager locationManager;	
+	long ultimo_tempo = 0;
+	
+	Retorno ret;
 
-	public GPSListener(Context context){
-		this.activity = (Activity)context;
+	public GPSListener(Context context, Retorno ret){
+		this.activity = context;
+		this.ret = ret;
 		locationManager = (LocationManager)	this.activity.getSystemService(Context.LOCATION_SERVICE);		
 	}
 	public void onLocationChanged(Location location) {
-		MainActivity.lat = location.getLatitude();
-		MainActivity.lng = location.getLongitude();
-		MapActivity.lat = location.getLatitude();
-		MapActivity.lng = location.getLongitude();
-		EditText et_lat = (EditText) activity.findViewById(R.id.et_lat);
-		et_lat.setText(String.valueOf(location.getLatitude()));
-		EditText et_lng = (EditText) activity.findViewById(R.id.et_lng);
-		et_lng.setText(String.valueOf(location.getLongitude()));
-		activity.setTitle(
-				activity.getResources().getString(R.string.app_name) + " [ " + 
-						String.valueOf(location.getAccuracy()) + " ] " +
-						String.valueOf(location.getSpeed()*3.6) + " km/h"		
+		ObjetosGlobais.lat = location.getLatitude();
+		ObjetosGlobais.lng = location.getLongitude();
+		ObjetosGlobais.precisao = location.getAccuracy();
+		
+		//ObjetosGlobais.velocidade = location.getSpeed()*3.6;
+		
+		
+	
+		ObjetosGlobais.latLng_valida = true;
+		//ObjetosGlobais.velocidade = location.getSpeed()*3.6;
+		
+		//ObjetosGlobais.provider_name = location.getProvider().toString();
+		/*activity.setTitle(
+				activity.getResources().getString(R.string.app_name) + " - " +						
+						String.valueOf(ObjetosGlobais.velocidade) + " km/h"						
 				);
+		ObjetosGlobais.pd.dismiss();*/
+		
+		
+		
 	}
 	public void onStatusChanged(String s, int i, Bundle b) {
 		//Toast.makeText(MainActivity.this, "Provider status changed",Toast.LENGTH_SHORT).show();
@@ -89,5 +96,6 @@ public class GPSListener implements android.location.LocationListener {
 		}
 		return true;
 	}
+	
 
 }

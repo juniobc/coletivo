@@ -57,6 +57,12 @@ public class DeterminaLinha {
 		Object[] check = histograma.toArray();		
 		if(check.length>1){
 			//verificacao das frequencias
+			/*
+			 * p -> primeiro
+			 * ip-> indice do primeiro
+			 * s -> segundo
+			 * is-> indice do segundo
+			 * */
 			int p=-1,s=-1,ip=-1,is=-1;
 			for(int i =0;i<check.length;i++){
 				if(((par)check[i]).cont > p){

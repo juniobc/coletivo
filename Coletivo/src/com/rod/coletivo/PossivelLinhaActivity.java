@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.coletivo.R;
+import com.rod.coletivo.R;
 import com.rod.coletivo.auxiliar.LinhaAdapter;
 import com.rod.coletivo.db.MySQLitePossivelLinhaHelper;
 import com.rod.coletivo.entidade.PossivelLinha;

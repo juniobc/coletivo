@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.coletivo.R;
+import com.rod.coletivo.R;
 import com.rod.coletivo.entidade.PossivelLinha;
 
 public class LinhaAdapter extends ArrayAdapter<PossivelLinha> {
@@ -29,6 +30,13 @@ public class LinhaAdapter extends ArrayAdapter<PossivelLinha> {
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 			convertView = inflater.inflate(resource, parent,false);
 		}
+		LinearLayout root = (LinearLayout) convertView.findViewById(R.id.row);
+		if((position % 2) == 0){
+			root.setBackgroundColor(convertView.getResources().getColor(R.color.SkyBlue));
+		}	
+		else{
+			root.setBackgroundColor(convertView.getResources().getColor(R.color.white));
+		}	
 		PossivelLinha object = data[position];
 		
 		TextView tv_nome = (TextView) convertView.findViewById(R.id.tv_nome);
