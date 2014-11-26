@@ -79,7 +79,7 @@ public class DeterminaLinha {
 				}
 			}
 			if(((par)check[ip]).freq == 1){
-				if(((par)check[ip]).cont - ((par)check[is]).cont >=5)
+				if(((par)check[ip]).cont - ((par)check[is]).cont >=3)
 					return lista.get(ip);
 			}
 		}

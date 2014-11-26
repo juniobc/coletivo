@@ -1,25 +1,15 @@
 package com.rod.rede;
 
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.rod.coletivo.auxiliar.Retorno;
 import com.rod.util.ParametrosGlobais;
+import com.rod.util.TemConexao;
 
-public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
-	public String METHOD_NAME = "BuscaLinha";
-	public String NAMESPACE = "http://montra.com.br/cmtc/soap/server.php";
-	public String URL = "http://montra.com.br/cmtc/soap/server.php";
-
-	public String SOAP_ACTION = NAMESPACE + "/" + METHOD_NAME;
-	
+public class BuscaLinha extends AsyncTask<String, Void, String> {
+		
 	Context context;
 	Retorno  ret;
 	String origem;
@@ -33,34 +23,20 @@ public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 		
 	}
 	@Override
-	protected SoapObject doInBackground(String... params) {
-		SoapObject result = null;
-		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-		request.addProperty("lat", params[0]);
-		request.addProperty("lng", params[1]);
-		request.addProperty("dist", params[2]);
+	protected String doInBackground(String... arg0) {
 		
+		String[] params = {
+				"http://montra.com.br/cmtc/json/functions.php",
+				"lat="+arg0[0],
+				"lng="+arg0[1],
+				"dist="+arg0[2],
+				"op=BuscaLinha"
+				};
 		
-		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		envelope.dotNet = true;
-
-		envelope.setOutputSoapObject(request);
-		try {
-			HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
-			
-			androidHttpTransport.call(SOAP_ACTION, envelope);		
-			
-			result = (SoapObject) envelope.getResponse();
-
-		} 
-		catch (NullPointerException e){
-			
-		}
-		catch (Exception e) {
-			Log.d("mytag", e.getMessage());
-			e.printStackTrace();
-		}
-		return result;
+		if(TemConexao.ativa(context))
+			return FazChamada.execute(params);
+		else
+			return TemConexao.erro;
 	}
 
 	@Override
@@ -73,8 +49,8 @@ public class BuscaLinha extends AsyncTask<String, Void, SoapObject> {
 	}
 	
 	@Override
-	protected void onPostExecute(SoapObject result) {
-		ret.Trata(result);
+	protected void onPostExecute(String result) {
+		ret.TrataJson(result);
 		if(origem == ParametrosGlobais.ORIGEM_ACTIVITY)
 			pd.dismiss();
 	}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/cinza"
+        android:gravity="center" >
+
+        <ImageButton
+            android:id="@+id/img_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/cinza"
+            android:src="@drawable/home" />
+
+	    <ImageButton
+	        android:id="@+id/img_mapa"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="@color/cinza"
+	        android:src="@drawable/mapa" />
+
+	    <ImageButton
+	        android:id="@+id/img_config"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="@color/cinza"
+	        android:src="@drawable/config" />
+    
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E3E3E3"
+        android:gravity="center" >
+
+        <EditText  
+            android:id="@+id/txt_linha"
+		    android:layout_width="70dp" 
+		    android:layout_height="30dp" 
+		    android:layout_weight="1"
+		    android:layout_marginLeft="10dp"
+		    android:layout_marginRight="10dp"
+		    android:inputType="number"
+		    android:background="@drawable/text_borda" />
+
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/buscar_borda"
+            android:text="@string/buscar_linhas"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    
+    <ListView
+           android:id="@+id/et_resultado"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:ems="10"
+           android:gravity="top|left"
+           android:inputType="textMultiLine"
+           android:textSize="13sp">
+   	</ListView>
+    <ImageView
+        android:id="@+id/imageView1" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:background="@color/SkyBlue"
+        android:src="@drawable/propaganda" />
+
+</LinearLayout>

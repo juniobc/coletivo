@@ -13,7 +13,7 @@
         android:id="@+id/action_map"
         android:orderInCategory="100"
         android:title="@string/action_map"
-        android:icon="@drawable/map"
+        android:icon="@drawable/mapa"
         app:showAsAction="always"/>
 
 </menu>

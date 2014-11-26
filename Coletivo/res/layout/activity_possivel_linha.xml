@@ -3,11 +3,23 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_limpa_banco"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Limpa banco" />
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_limpa_banco"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:text="Limpa banco" />
+
+        <Button
+            android:id="@+id/btn_exporta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exportar" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_linha"

@@ -49,6 +49,9 @@ public class LinhaAdapter extends ArrayAdapter<PossivelLinha> {
 		TextView tv_cont = (TextView) convertView.findViewById(R.id.tv_cont);
 		tv_cont.setText(String.valueOf(object.cont));
 		
+		TextView tv_ida = (TextView) convertView.findViewById(R.id.tv_ida);
+		tv_ida.setText(String.valueOf(object.ida));
+		
 		return convertView;
 	}
 

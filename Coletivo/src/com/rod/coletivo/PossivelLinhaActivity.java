@@ -16,12 +16,14 @@ import com.rod.coletivo.R;
 import com.rod.coletivo.auxiliar.LinhaAdapter;
 import com.rod.coletivo.db.MySQLitePossivelLinhaHelper;
 import com.rod.coletivo.entidade.PossivelLinha;
+import com.rod.util.Log;
+import com.rod.util.ParametrosGlobais;
 
 public class PossivelLinhaActivity extends ActionBarActivity {
 	MySQLitePossivelLinhaHelper dbPL;
 	ListView lv_linha;
 	Calendar c;
-	Button btn_limpa_banco;
+	Button btn_limpa_banco,btn_exporta;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,15 +31,39 @@ public class PossivelLinhaActivity extends ActionBarActivity {
 		dbPL = new MySQLitePossivelLinhaHelper(this);
 		lv_linha=(ListView) findViewById(R.id.lv_linha);
 		c = Calendar.getInstance();
-		
+
 		btn_limpa_banco = (Button) findViewById(R.id.btn_limpa_banco);
 		btn_limpa_banco.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				dbPL.deleteAllPossivelLinha();
 				atualiza_lista();
+			}
+		});
+		btn_exporta = (Button) findViewById(R.id.btn_exporta);
+		btn_exporta.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				List<PossivelLinha> pls = dbPL.getAllPossivelLinhaFull();
+				for(PossivelLinha pl:pls){
+					Log.grava(
+							"dados.csv", 
+							String.valueOf(pl.idpossivellinha)+";"+
+							String.valueOf(pl.idlinha)+";"+
+							pl.nome+";"+
+							pl.numero+";"+
+							pl.datahora+";"+
+							String.valueOf(pl.seq)+";"+
+							String.valueOf(pl.lat)+";"+
+							String.valueOf(pl.lng)+";"+
+							String.valueOf(pl.ida)
+						);
+				}
+
 			}
 		});
 	}
@@ -46,7 +72,7 @@ public class PossivelLinhaActivity extends ActionBarActivity {
 	protected void onResume(){
 		super.onResume();
 		atualiza_lista();
-		
+
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,13 +96,13 @@ public class PossivelLinhaActivity extends ActionBarActivity {
 		List<PossivelLinha> list = dbPL.getAllPossivelLinha();		
 		PossivelLinha[] possivelLinha = new PossivelLinha[list.size()]; 
 
-		
-        for(int i=0;i<list.size();i++){
-        	c.setTimeInMillis(list.get(i).datahora);
-    		possivelLinha[i] = list.get(i);
-        	//DateFormat.format("dd-MM-yyyy", list.get(i).datahora).toString() + '\n');
-        }
-        LinhaAdapter adapter = new LinhaAdapter(this,R.layout.linha_row,possivelLinha);            
-        lv_linha.setAdapter(adapter);
+
+		for(int i=0;i<list.size();i++){
+			c.setTimeInMillis(list.get(i).datahora);
+			possivelLinha[i] = list.get(i);
+			//DateFormat.format("dd-MM-yyyy", list.get(i).datahora).toString() + '\n');
+		}
+		LinhaAdapter adapter = new LinhaAdapter(this,R.layout.linha_row,possivelLinha);            
+		lv_linha.setAdapter(adapter);
 	}
 }
