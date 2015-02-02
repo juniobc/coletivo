@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dp"
+    android:orientation="vertical" 
+    android:background="@color/SkyBlue"
+    android:focusableInTouchMode="true">
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/text_borda"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top" >
+
+            <EditText
+                android:id="@+id/et_numero"
+                android:layout_width="216dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/img_btn_buslinha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/abc_ic_search" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/et_resultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:textSize="13sp">
+    	</ListView>
+        <ImageView
+            android:id="@+id/imageView1" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:background="@color/SkyBlue"
+            android:src="@drawable/propaganda" />
+
+    </LinearLayout>
+
+</LinearLayout>
