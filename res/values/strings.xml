@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Coletivo</string>
+    <string name="buscar_linhas">Buscar</string>
+    
+    
+    
+    
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_possivel_rota">Possivel Linha</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="action_map">Mapa</string>
+    <string name="action_db">Banco</string>
+    <string name="action_conf">Conf</string>
+    <string name="title_activity_config">Configurações</string>
+    <string name="title_activity_horario">Horário</string>
+    
+</resources>
